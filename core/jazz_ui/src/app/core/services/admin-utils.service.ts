@@ -19,4 +19,13 @@ export class AdminUtilsService {
           return response.data.config;
       })
   }
+
+  getAdminUsers() {
+    return this.http.get('/jazz/usermanagement')
+    .toPromise()
+    .then((response) => {
+      if (response && response.data && response.data.users)
+      return response.data.users;
+    })
+  }
 }

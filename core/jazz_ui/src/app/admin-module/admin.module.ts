@@ -4,6 +4,7 @@ import {RouterModule} from "@angular/router";
 import {routes} from "./admin.route";
 import {CommonModule} from "@angular/common";
 import {NgModule} from "@angular/core";
+
 import {JsonViewerComponent} from "../primary-components/json-viewer/json-viewer.component";
 import {AdminComponent} from '../pages/admin/admin.component';
 import {AdminUtilsService} from '../core/services/admin-utils.service';
