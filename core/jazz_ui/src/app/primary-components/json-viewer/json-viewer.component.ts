@@ -1,6 +1,5 @@
 import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChildren} from '@angular/core';
-import {AdminUtilsService} from '../../core/services/admin-utils.service';
-import { RequestService } from '../../core/services/index';
+
 
 @Component({
   selector: 'json-viewer',
@@ -24,20 +23,11 @@ export class JsonViewerComponent implements OnInit {
   isPUTLoading: boolean = false;
   private http: any;
 
-  constructor(private adminUtils: AdminUtilsService,private request: RequestService) {
+  constructor() {
   }
 
   ngOnInit() {
-    // this.state = 'loading';
-    // this.adminUtils.getAdminUsers()
-    //   .then((data: any) => {
-    //     this.state = 'resolved';
-    //     this.userData = data;
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //     this.state = 'error';
-    //   })
+   
     this.rowTracker = Object.keys(this.json).map((key) => {
       this.leafNodes += this.hasChildren(this.json[key]) ? 0 : 1;
       return {
@@ -97,29 +87,5 @@ export class JsonViewerComponent implements OnInit {
       return input
     }
   }
-  checkValue(event,name){
-    let payload = {};
-      this.check = !event;
-      if(this.check==false){
-      payload['status'] = 0;
-      }
-      else{
-        payload['status'] = 1;
-      }
 
-       this.isPUTLoading = true;
-       this.http.put('/jazz/usermanagement/' +name,payload)
-         .subscribe(
-           (Response) => {
-             // debugger
-             this.isPUTLoading = false;
-            
-           },
-           (Error) => {
-           
-             this.isPUTLoading = false;
-            
-           });
-
-      }
 }
